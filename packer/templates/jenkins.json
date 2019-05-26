@@ -1,0 +1,17 @@
+{
+  "builders": [
+    {
+      "type": "vagrant",
+      "communicator": "ssh",
+      "source_path": "ubuntu/xenial64",
+      "output_dir": "../vagrant/jenkins/tmp",
+      "skip_add": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../scripts/ansible-bootstrap.sh"
+    }
+  ]
+}
