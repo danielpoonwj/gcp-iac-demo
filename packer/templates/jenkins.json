@@ -12,6 +12,16 @@
     {
       "type": "shell",
       "script": "../scripts/ansible-bootstrap.sh"
+    },
+    {
+      "type": "ansible-local",
+      "extra_arguments": [
+      ],
+      "command": "sudo ansible-playbook",
+      "playbook_dir": "../../ansible/",
+      "playbook_file": "../../ansible/jenkins-init.yml",
+      "galaxycommand": "sudo ansible-galaxy",
+      "galaxy_file": "../ansible-galaxy-requirements/jenkins.yml"
     }
   ]
 }

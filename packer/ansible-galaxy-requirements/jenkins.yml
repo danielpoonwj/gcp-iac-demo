@@ -1,0 +1,3 @@
+- src: https://github.com/geerlingguy/ansible-role-jenkins.git
+  version: "3.7.0"
+  name: galaxy.jenkins
