@@ -13,3 +13,20 @@
       - job-dsl
       - workflow-aggregator
       - pipeline-utility-steps
+
+- name: Install python dependencies
+  pip:
+    name:
+      - python-jenkins
+      - lxml
+    state: present
+
+- name: Initialize seed job
+  jenkins_job:
+    config: "{{ lookup('template', 'seed_job.xml.j2') }}"
+    name: seed
+    user: "{{ jenkins_credentials.admin_user }}"
+    password: "{{ jenkins_credentials.admin_password }}"
+  vars:
+    repo_url: "{{ jenkins_seed_repo_url }}"
+    job_dsl_targets: 'jenkins/job_dsl/**.groovy'
