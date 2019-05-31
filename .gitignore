@@ -4,3 +4,7 @@
 .vagrant.d
 *.box
 *-console.log
+
+*.plan
+.terraform
+*.tfstate*
