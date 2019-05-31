@@ -10,12 +10,18 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "../../.ansible-vault-pass",
+      "destination": "/tmp/.ansible-vault-pass"
+    },
+    {
       "type": "shell",
       "script": "../scripts/ansible-bootstrap.sh"
     },
     {
       "type": "ansible-local",
       "extra_arguments": [
+        "--vault-password-file=/tmp/.ansible-vault-pass"
       ],
       "command": "sudo ansible-playbook",
       "playbook_dir": "../../ansible/",
