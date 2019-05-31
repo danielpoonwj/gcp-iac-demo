@@ -6,6 +6,18 @@
       "source_path": "ubuntu/xenial64",
       "output_dir": "../vagrant/jenkins/tmp",
       "skip_add": true
+    },
+    {
+      "type": "googlecompute",
+      "source_image_family": "ubuntu-1604-lts",
+      "ssh_username": "ubuntu",
+      "project_id": "{{user `project`}}",
+      "zone": "{{user `zone`}}",
+      "image_name": "packer-jenkins-{{user `env`}}-{{timestamp}}",
+      "image_family": "packer-{{user `env`}}-jenkins",
+      "machine_type": "n1-standard-2",
+      "disk_type": "pd-ssd",
+      "disk_size": 30
     }
   ],
   "provisioners": [

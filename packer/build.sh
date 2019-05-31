@@ -15,9 +15,17 @@ function __build_vagrant {
   rm -rf "$temp_dir"
 }
 
+function __build_googlecompute {
+  cd templates
+  packer build -only=googlecompute -var-file=../vars/googlecompute.vars "$TEMPLATE_NAME.json"
+}
+
 case $BUILDER_TYPE in
   vagrant)
     __build_vagrant
+    ;;
+  googlecompute)
+    __build_googlecompute
     ;;
   *)
     echo 'Unknown command'
