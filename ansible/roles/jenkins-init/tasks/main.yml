@@ -30,3 +30,10 @@
   vars:
     repo_url: "{{ jenkins_seed_repo_url }}"
     job_dsl_targets: 'jenkins/job_dsl/**.groovy'
+
+- name: Install docker
+  import_role:
+    name: galaxy.docker
+  vars:
+    docker_users:
+      - jenkins
