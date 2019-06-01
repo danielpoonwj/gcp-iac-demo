@@ -13,6 +13,7 @@
       - job-dsl
       - workflow-aggregator
       - pipeline-utility-steps
+      - startup-trigger-plugin
 
 - name: Install python dependencies
   pip:
