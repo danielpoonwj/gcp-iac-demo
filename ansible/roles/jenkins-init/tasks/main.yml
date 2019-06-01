@@ -32,6 +32,25 @@
     repo_url: "{{ jenkins_seed_repo_url }}"
     job_dsl_targets: 'jenkins/job_dsl/**.groovy'
 
+- name: Create custom init scripts directory
+  file:
+    path: "/var/lib/jenkins/init.groovy.d"
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: 0775
+
+- name: Setup init scripts
+  copy:
+    src: "init_scripts/{{ item }}"
+    dest: "/var/lib/jenkins/init.groovy.d/{{ item }}"
+    owner: jenkins
+    group: jenkins
+    mode: 0775
+  with_items:
+    - no_usage_statistics.groovy
+    - job_dsl_security.groovy
+
 - name: Install docker
   import_role:
     name: galaxy.docker
