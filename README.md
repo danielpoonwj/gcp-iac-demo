@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project is a demonstration on using various tools to provision and deploy `jenkins` on Google Cloud Platform, with one `jenkins` job to build a `docker` container of a [sample web application](https://github.com/danielpoonwj/go-http-sample). By no means is this production ready, but a brief run-through of the approach and various tools that can be used to accomplish this.
+This project is a demonstration on using various tools to provision and deploy [`jenkins`](https://jenkins.io/) on [Google Cloud Platform](https://cloud.google.com/), with one `jenkins` job to build a [`docker`](https://www.docker.com/) container of a [sample web application](https://github.com/danielpoonwj/go-http-sample). This is by no means production ready, but the aim is to provide a brief run-through of the approach and various tools that can be used to accomplish this.
 
 *Note*: This has only been tested for *nix systems (Mac OS/Linux). The tools may be supported on Windows but I've not personally tried.
 
@@ -10,7 +10,7 @@ This project is a demonstration on using various tools to provision and deploy `
 
 ### Overview
 
-[`packer`](https://packer.io/) is a tool which specializes in the creation of various types of machine images. This allows the exact same provision steps for different targets (eg. Google Compute Engine Images, AWS AMIs, Vagrant Boxes). In this example, the core provisioning steps are performed with [`ansible`](https://www.ansible.com/), leveraging on open source Ansible Galaxy roles for the installation and configuration of `jenkins` and `docker`. However, there are [other automation tools](https://packer.io/docs/provisioners/index.html) supported as `packer` provisoners that can be used, such as `chef`, `puppet` and `salt`.
+[`packer`](https://packer.io/) is a tool which specializes in the creation of various types of machine images. This allows the exact same provision steps for different targets (eg. Google Compute Engine Images, AWS AMIs, Vagrant Boxes). In this example, the core provisioning steps are performed with [`ansible`](https://www.ansible.com/), leveraging on open source Ansible Galaxy roles for the installation and configuration of `jenkins` and `docker`. However, there are [other automation tools](https://packer.io/docs/provisioners/index.html) supported as `packer` provisoners, such as `chef`, `puppet` and `salt`.
 
 One of the goals of this demo is to be able to develop locally for a faster feedback cycle, particularly for this provisioning stage. For this, we are using [`vagrant`](https://www.vagrantup.com/). Paired with `packer`'s [`vagrant` builder](https://packer.io/docs/builders/vagrant.html), the exact same provisioning steps can be performed locally.
 
@@ -148,4 +148,4 @@ terraform apply "tf.plan"
 
 ### Cleaning up
 
-`terraform` can destroy the created resources with the command `terraform destroy` within each of the directories (`terraform/dev/jenkins` and `terraform/dev/network`). Its advised to destroy them in that order, and the jenkins resources are dependant on those managed in the network.
+`terraform` can destroy the created resources with the command `terraform destroy` within each of the directories (`terraform/dev/jenkins` and `terraform/dev/network`). Its advised to destroy them in that order as the jenkins resources are dependent on those managed in network.
